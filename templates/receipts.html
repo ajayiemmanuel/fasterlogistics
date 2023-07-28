@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Faster Logistics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css'><link rel="stylesheet" href="{% static 'css/receipts.css' %}">
+</head>
+<body style=" background-image: url({% static 'img/receipts.jpeg' %}); background-repeat:no-repeat; background-size:100%;">
+<!-- partial:index.partial.html -->
+<div class="container invoice">
+  <div class="invoice-header">
+    <div class="ui left aligned grid">
+      <div class="row">
+        <div class="left floated left aligned six wide column">
+          <div class="ui">
+            <h1 class = "ui header pageTitle">Invoice <small class = "ui sub header">With Credit</small></h1>
+            <h4 class="ui sub header invDetails">NO: {{request.user.product.order}} | Order Date: {{request.user.product.order_date}}</h4>
+          </div>
+        </div>
+        <div class="right floated left aligned six wide column">
+          <div class="ui">
+            <div class="column two wide right floated">
+              <i class="fa fa-truck mr-2"></i>
+              <ul class="">
+                <li><strong>Faster Logistic</strong></li>
+                <li>94 High Street
+                  WESTERN CENTRAL LONDON WC37 4WP</li>
+                <li>info@rcja.com</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui segment cards">
+    <div class="ui card">
+      <div class="content">
+        <div class="header">Sender Details</div>
+      </div>
+      <div class="content">
+        <ul>
+          <li> <strong> Name: {{user.first_name}} {{user.last_name}}</strong> </li>
+          <li><strong> Address: </strong> {{request.user.customer.address}}</li>
+          <li><strong> Phone: </strong> {{request.user.customer.phone_number}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ui card customercard">
+      <div class="content">
+        <div class="header">Reciever Details</div>
+      </div>
+      <div class="content">
+        <ul>
+          <li> <strong> Name: {{request.user.product.reciever_name}} </strong> </li>
+          <li><strong> Address: </strong> {{request.user.product.address}}</li>
+          <li><strong> Phone: </strong> {{request.user.product.phone_number}}</li>
+          <li><strong> Destination: </strong> {{request.user.product.destination}}</li>
+          <li><strong> Post Code: </strong> {{request.user.product.postal_code}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ui segment itemscard">
+      <div class="content">
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>Package / Details</th>
+              <th class="text-center colfix">Orgin</th>
+              <th class="text-center colfix">Destination</th>
+              <th class="text-center colfix">Weight</th>
+              <th class="text-center colfix">Full Item Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+               Package Name
+                <br>
+                <small class="text-muted">{{request.user.product.package_name}}</small>
+              </td>
+              <td class="text-right">
+                <span class="mono">{{request.user.product.origin}}</span>
+              </td>
+              <td class="text-right">
+                <span class="mono">{{request.user.product.destination}}</span>
+              </td>
+              <td class="text-right">
+                <span class="mono">21 kg</span>
+
+              </td>
+              <td class="text-right">
+                <span class="mono">One Trunk Box</span>
+
+              </td>
+
+            </tr>
+
+            <tr>
+              <td>
+                X-Ray Scan Result	
+                <br>
+                <small class="text-muted">Non-Hardful Content (Negative)</small>
+              </td>
+
+            </tr>
+          </tbody>
+         <tfoot class="full-width">
+  </tfoot>
+        </table>
+
+      </div>
+    </div>
+
+    <div class="ui card">
+      <div class="content center aligned text segment">
+        <small class="ui sub header"> Amount (AUD): </small>
+        <p class="bigfont"> ${{request.user.product.shipping_amount}} </p>
+      </div>
+    </div>
+        <div class="ui card">
+      <div class="content">
+        <div class="header">Packaged By</div>
+      </div>
+      <div class="content">
+        <p> <bold> Faster Logistic </bold> </p>
+
+      </div>
+    </div>
+    <div class="ui card">
+      <div class="content">
+        <div class="header">Notes</div>
+      </div>
+      <div class="content">
+     Attention... The sender should remind the reciever of the diplomatic charges... thhanks for shipping with us
+      </div>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+</body>
+</html>
